@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="theme-color" content="#0B041E" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <title>DevRun-Tech - Digital Product Agency</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        darkMode: 'class',
+        theme: {
+          extend: {
+            colors: {
+              background: 'var(--bg-background)',
+              primary: '#6D28D9',
+              secondary: '#22D3EE',
+              surface: 'var(--bg-surface)',
+              'surface-hover': 'var(--bg-surface-hover)',
+              main: 'var(--text-main)',
+              muted: 'var(--text-muted)',
+              border: 'var(--border-color)',
+              glass: 'var(--bg-glass)',
+              card: 'var(--bg-card)',
+            },
+            fontFamily: {
+              sans: ['Inter', 'sans-serif'],
+            },
+            animation: {
+              'float': 'float 6s ease-in-out infinite',
+              'float-delayed': 'float 6s ease-in-out 3s infinite',
+              'float-simple': 'float-simple 8s ease-in-out infinite',
+              'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+              'blob': 'blob 10s infinite',
+              'shimmer': 'shimmer 2s linear infinite',
+              'slide-up': 'slide-up 0.3s ease-out',
+            },
+            keyframes: {
+              float: {
+                '0%, 100%': { transform: 'translateY(0)' },
+                '50%': { transform: 'translateY(-20px)' },
+              },
+              'float-simple': {
+                '0%, 100%': { transform: 'translateY(0)' },
+                '50%': { transform: 'translateY(-12px)' },
+              },
+              blob: {
+                '0%': { transform: 'translate(0px, 0px) scale(1)' },
+                '33%': { transform: 'translate(30px, -50px) scale(1.1)' },
+                '66%': { transform: 'translate(-20px, 20px) scale(0.9)' },
+                '100%': { transform: 'translate(0px, 0px) scale(1)' },
+              },
+              shimmer: {
+                'from': { transform: 'translateX(-100%)' },
+                'to': { transform: 'translateX(100%)' }
+              },
+              'slide-up': {
+                '0%': { transform: 'translateY(100%)' },
+                '100%': { transform: 'translateY(0)' }
+              }
+            }
+          },
+        },
+      };
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+      :root {
+        --bg-background: #ffffff;
+        --bg-surface: #F8FAFC;
+        --bg-surface-hover: #F1F5F9;
+        --bg-card: #ffffff;
+        --text-main: #0F172A;
+        --text-muted: #64748B;
+        --border-color: rgba(0, 0, 0, 0.1);
+        --bg-glass: rgba(0, 0, 0, 0.05);
+        --grid-line: rgba(0, 0, 0, 0.03);
+      }
+
+      .dark {
+        --bg-background: #0B041E;
+        --bg-surface: #150B2E;
+        --bg-surface-hover: #1E1145;
+        --bg-card: #150B2E;
+        --text-main: #ffffff;
+        --text-muted: #9CA3AF;
+        --border-color: rgba(255, 255, 255, 0.1);
+        --bg-glass: rgba(255, 255, 255, 0.05);
+        --grid-line: rgba(255, 255, 255, 0.05);
+      }
+
+      body {
+        background-color: var(--bg-background);
+        color: var(--text-main);
+        font-family: 'Inter', sans-serif;
+        transition: background-color 0.3s ease, color 0.3s ease;
+        padding-bottom: env(safe-area-inset-bottom);
+        padding-top: env(safe-area-inset-top);
+      }
+      
+      button:not(.no-glow) {
+        position: relative;
+        border: 1px solid rgba(34, 197, 94, 0.6) !important;
+        box-shadow: 0 0 10px rgba(34, 197, 94, 0.3), inset 0 0 2px rgba(34, 197, 94, 0.2);
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+      }
+
+      button:not(.no-glow):hover {
+        border-color: rgba(34, 197, 94, 1) !important;
+        box-shadow: 0 0 20px rgba(34, 197, 94, 0.6), inset 0 0 4px rgba(34, 197, 94, 0.3);
+        transform: translateY(-2px);
+      }
+
+      .bg-grid-pattern {
+        background-size: 50px 50px;
+        background-image: linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
+                          linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
+        mask-image: linear-gradient(to bottom, black 40%, transparent 100%);
+        -webkit-mask-image: linear-gradient(to bottom, black 40%, transparent 100%);
+        animation: grid-move 30s linear infinite;
+      }
+
+      @keyframes grid-move {
+        0% { background-position: 0 0; }
+        100% { background-position: 50px 50px; }
+      }
+
+      /* Mobile Navigation Active State Simulation */
+      .active-tab {
+        color: #A855F7 !important;
+      }
+      
+      .active-tab .tab-icon {
+        transform: scale(1.1) translateY(-2px);
+        color: #A855F7;
+      }
+
+      /* Android Ripple Effect Approximation */
+      .ripple {
+        position: relative;
+        overflow: hidden;
+      }
+      .ripple:after {
+        content: "";
+        display: block;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        pointer-events: none;
+        background-image: radial-gradient(circle, #fff 10%, transparent 10.01%);
+        background-repeat: no-repeat;
+        background-position: 50%;
+        transform: scale(10, 10);
+        opacity: 0;
+        transition: transform .5s, opacity 1s;
+      }
+      .ripple:active:after {
+        transform: scale(0, 0);
+        opacity: .3;
+        transition: 0s;
+      }
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "react": "https://esm.sh/react@^19.2.3",
+    "react/": "https://esm.sh/react@^19.2.3/",
+    "react-dom": "https://esm.sh/react-dom@^19.2.3",
+    "react-dom/client": "https://esm.sh/react-dom@^19.2.3/client",
+    "lucide-react": "https://esm.sh/lucide-react@^0.562.0",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.3/"
+  }
+}
+</script>
+<link rel="stylesheet" href="/index.css">
+</head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="./index.tsx"></script>
+  <script type="module" src="/index.tsx"></script>
+</body>
+</html>
